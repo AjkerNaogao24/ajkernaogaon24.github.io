@@ -1,7 +1,4 @@
-                     
-    
-            
-               <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
@@ -37,7 +34,7 @@
             color: #e0e0e0;
         }
         
-        /* মেনুবার */
+        /* সহজ ও সচল মেনুবার */
         .nav-container {
             background-color: #222;
             sticky: top;
@@ -48,51 +45,27 @@
             display: flex;
             overflow-x: auto;
             white-space: nowrap;
-            padding: 5px;
+            padding: 8px 5px;
         }
-        .nav-container button, .nav-container a {
+        .nav-container button {
             background: none;
             border: none;
             color: white;
-            text-decoration: none;
-            padding: 12px 15px;
+            padding: 10px 16px;
             font-size: 14px;
             cursor: pointer;
             display: inline-block;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-right: 4px;
+            transition: 0.2s;
         }
         .nav-container button.active {
             background-color: #e63946;
-            border-radius: 4px;
-            font-weight: bold;
-        }
-        
-        /* সাহিত্য ড্রপডাউন */
-        .dropdown {
-            display: inline-block;
-            position: relative;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #333;
-            min-width: 140px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            z-index: 1001;
-            border-radius: 4px;
-        }
-        .dropdown-content button {
             color: white;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            width: 100%;
-            text-align: left;
         }
-        .dropdown-content button:hover {
-            background-color: #e63946;
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
+        .nav-container button:hover {
+            background-color: #444;
         }
 
         /* ব্রেকিং নিউজ */
@@ -117,24 +90,19 @@
             font-size: 14px;
         }
 
-        /* মেইন কন্টেন্ট এলাকা */
+        /* কন্টেন্ট বক্স */
         .main-content {
             padding: 15px;
             max-width: 800px;
             margin: 0 auto;
             min-height: 400px;
         }
-        
-        /* প্রতিটি সেকশন ডিফল্টভাবে লুকিয়ে থাকবে */
         .content-section {
             display: none;
         }
-        
-        /* শুধু একটি সেকশন একটিভ থাকবে */
         .content-section.active {
             display: block;
         }
-        
         .section-title {
             background-color: #0f2027;
             color: #ffb703;
@@ -163,15 +131,6 @@
             line-height: 1.6;
             text-align: justify;
         }
-        .live-box {
-            background: #000;
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
         .footer {
             background-color: #222;
             color: #bbb;
@@ -189,137 +148,84 @@
         <p>সত্য প্রচারে আপসহীন — ২৪ ঘণ্টা নওগাঁর সাথে</p>
     </header>
 
-    <!-- নেভিগেশন মেনুবার -->
     <div class="nav-container">
         <button class="menu-btn active" onclick="openSection(event, 'prochchod')">প্রচ্ছদ</button>
-        <button class="menu-btn" onclick="openSection(event, 'live')">লাইভ</button>
         <button class="menu-btn" onclick="openSection(event, 'naogaon')">নওগাঁ শহর</button>
-        <button class="menu-btn" onclick="openSection(event, 'national')">জাতীয়</button>
-        <button class="menu-btn" onclick="openSection(event, 'international')">আন্তর্জাতিক</button>
-        <button class="menu-btn" onclick="openSection(event, 'sports')">খেলাধুলা</button>
         <button class="menu-btn" onclick="openSection(event, 'shonskriti')">সংস্কৃতি</button>
-        <div class="dropdown">
-            <button class="menu-btn">সাহিত্য বিভাগ ▾</button>
-            <div class="dropdown-content">
-                <button onclick="openSection(event, 'kobita')">কবিতা</button>
-                <button onclick="openSection(event, 'golpo')">ছোট গল্প</button>
-                <button onclick="openSection(event, 'uponnas')">উপন্যাস</button>
-                <button onclick="openSection(event, 'natika')">নাটিকা</button>
-            </div>
-        </div>
+        <button class="menu-btn" onclick="openSection(event, 'kobita')">কবিতা</button>
+        <button class="menu-btn" onclick="openSection(event, 'golpo')">ছোট গল্প</button>
+        <button class="menu-btn" onclick="openSection(event, 'uponnas')">উপন্যাস</button>
+        <button class="menu-btn" onclick="openSection(event, 'natika')">নাটিকা</button>
         <button class="menu-btn" onclick="openSection(event, 'ranna')">রান্না</button>
     </div>
 
     <div class="ticker-wrapper">
         <div class="ticker-title">ব্রেকিং নিউজ</div>
-        <marquee scrollamount="5">আজকের নওগাঁ ২৪ পোর্টালে সংস্কৃতি বিষয়ক নতুন বিভাগ যুক্ত করা হয়েছে ।। মেনু থেকে যেকোনো সেকশনে ক্লিক করে নতুন আপডেট দেখুন ।।</marquee>
+        <marquee scrollamount="5">আজকের নিউজ এখানে টাইপ করুন ।। আপনার নিউজ পোর্টালটি এখন পুরোপুরি পরিমার্জিত ও সচল ।।</marquee>
     </div>
 
     <div class="main-content">
         
-        <!-- ১. প্রচ্ছদ সেকশন -->
         <div id="prochchod" class="content-section active">
             <div class="news-card">
-                <h2>স্বাগতম! আজকের নওগাঁ ২৪ নিউজ পোর্টালে আপনাকে অভিনন্দন</h2>
-                <p>নওগাঁ জেলার সব খবর সবার আগে পৌঁছে দিতে আমাদের এই প্রচেষ্টা। ওপরের পরিমার্জিত মেনু থেকে যেকোনো ক্যাটাগরিতে ক্লিক করলেই স্ক্রিন পরিবর্তন না হয়ে সরাসরি সেই বিষয়ের খবর বা সাহিত্য আপনার সামনে চলে আসবে।</p>
+                <h2>আজকের প্রধান খবর বা হেডলাইন এখানে লিখুন</h2>
+                <p>নওগাঁ জেলার প্রধান প্রধান খবর এবং প্রচ্ছদের বিস্তারিত লেখাগুলো এই বক্সে সুন্দরভাবে সাজিয়ে দিন।</p>
             </div>
         </div>
 
-        <!-- ২. লাইভ সেকশন -->
-        <div id="live" class="content-section">
-            <div class="section-title">📺 লাইভ সম্প্রচার</div>
-            <div class="live-box">
-                🔴 লাইভ ভিডিও সেকশন (এখানে ভিডিওর লিংক যুক্ত করা যাবে)
-            </div>
-        </div>
-
-        <!-- ৩. নওগাঁ শহর সেকশন -->
         <div id="naogaon" class="content-section">
             <div class="section-title">🏢 নওগাঁ শহর</div>
             <div class="news-card">
-                <h2>নওগাঁ শহরের সৌন্দর্য বর্ধন ও পরিষ্কার-পরিচ্ছন্নতা অভিযান শুরু</h2>
-                <p>শহরকে পরিচ্ছন্ন ও বাসযোগ্য রাখতে বিশেষ উদ্যোগ নেওয়া হয়েছে। স্থানীয় তরুণ ও প্রশাসনের যৌথ ব্যবস্থাপনায় এই কাজ চলছে।</p>
+                <h2>নওগাঁ শহরের খবর এখানে লিখুন</h2>
+                <p>শহরের দৈনন্দিন ঘটনা, উন্নয়ন বা যেকোনো খবর এই বক্সে টাইপ করে দিন।</p>
             </div>
         </div>
 
-        <!-- ৪. জাতীয় সেকশন -->
-        <div id="national" class="content-section">
-            <div class="section-title">🇧🇩 জাতীয় সংবাদ</div>
-            <div class="news-card">
-                <h2>দেশজুড়ে ডিজিটাল শিক্ষা ব্যবস্থার সম্প্রসারণ</h2>
-                <p>সারাদেশের স্কুলগুলোতে আধুনিক ল্যাব ও স্মার্ট ক্লাসরুম তৈরির কাজ দ্রুত গতিতে এগিয়ে চলছে।</p>
-            </div>
-        </div>
-
-        <!-- ৫. আন্তর্জাতিক সেকশন -->
-        <div id="international" class="content-section">
-            <div class="section-title">🌐 আন্তর্জাতিক সংবাদ</div>
-            <div class="news-card">
-                <h2>বিশ্বজুড়ে প্রযুক্তির নতুন বিপ্লব ও আমাদের প্রস্তুতি</h2>
-                <p>আন্তর্জাতিক বাজারের সাথে তাল মিলিয়ে দেশের আইটি খাতকে আরও সমৃদ্ধ করার জোর প্রচেষ্টা চলছে।</p>
-            </div>
-        </div>
-
-        <!-- ৬. খেলাধুলা সেকশন -->
-        <div id="sports" class="content-section">
-            <div class="section-title">⚽ খেলাধুলা</div>
-            <div class="news-card">
-                <h2>নওগাঁ জেলা স্টেডিয়ামে শুরু হতে যাচ্ছে আন্তঃস্কুল ফুটবল টুর্নামেন্ট</h2>
-                <p>স্থানীয় প্রতিভাদের তুলে আনতে আগামী সপ্তাহ থেকেই মাঠে গড়াচ্ছে জমজমাট ফুটবল আসর।</p>
-            </div>
-        </div>
-
-        <!-- ৭. সংস্কৃতি বিষয়ক সেকশন -->
         <div id="shonskriti" class="content-section">
             <div class="section-title">🎨 সংস্কৃতি বিষয়ক</div>
             <div class="news-card">
-                <h2>নওগাঁর ঐতিহ্যবাহী লোকসংস্কৃতি ও উৎসবের ইতিহাস</h2>
-                <p>নওগাঁ জেলার সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য, ঐতিহ্যবাহী মেলা, লোকসংগীত এবং বিভিন্ন উৎসবের খবরাখবর ও প্রবন্ধ এই বিভাগে নিয়মিত প্রকাশ করা হবে।</p>
+                <h2>সংস্কৃতি বিষয়ক খবর এখানে লিখুন</h2>
+                <p>নওগাঁর মেলা, উৎসব, লোকসংস্কৃতি বা যেকোনো অনুষ্ঠান সম্পর্কিত খবর এখানে দিন।</p>
             </div>
         </div>
 
-        <!-- ৮. সাহিত্য বিভাগ: কবিতা -->
         <div id="kobita" class="content-section">
             <div class="section-title">✍️ সাহিত্য বিভাগ - কবিতা</div>
             <div class="news-card">
-                <h2>এখানে আপনার নতুন ও সুন্দর কবিতাটি থাকবে</h2>
-                <p>আপনার লেখা যেকোনো চমৎকার কবিতার লাইনগুলো এই বক্সে আপনি সাজিয়ে দিতে পারবেন। এখন কবিতায় চাপ দিলে শুধু কবিতাই স্ক্রিনে আসবে!</p>
+                <h2>এখানে কবিতার নাম লিখুন</h2>
+                <p>এখানে কবিতার লাইনগুলো সুন্দর করে টাইপ করুন।</p>
             </div>
         </div>
 
-        <!-- ৯. সাহিত্য বিভাগ: ছোটগল্প -->
         <div id="golpo" class="content-section">
             <div class="section-title">📖 সাহিত্য বিভাগ - ছোট গল্প</div>
             <div class="news-card">
-                <h2>এখানে ছোট গল্প যুক্ত করুন</h2>
-                <p>আপনার লেখা গল্পগুলো পাঠকদের জন্য এই সেকশনে সুন্দরভাবে ফুটিয়ে তোলা যাবে।</p>
+                <h2>গল্পের নাম এখানে লিখুন</h2>
+                <p>আপনার লেখা যেকোনো ছোট গল্প এখানে পাঠকদের জন্য সাজিয়ে দিন।</p>
             </div>
         </div>
 
-        <!-- ১০. সাহিত্য বিভাগ: উপন্যাস -->
         <div id="uponnas" class="content-section">
             <div class="section-title">📚 সাহিত্য বিভাগ - উপন্যাস</div>
             <div class="news-card">
-                <h2>এখানে উপন্যাস বা ধারাবাহিক গল্প থাকবে</h2>
-                <p>আপনার বড় গল্প বা উপন্যাস সুন্দর পরিমার্জিত উপায়ে পড়ার জন্য এই সেকশনটি ব্যবহার করুন।</p>
+                <h2>উপন্যাসের নাম এখানে লিখুন</h2>
+                <p>আপনার ধারাবাহিক উপন্যাস বা বড় কোনো লেখা এখানে খুব সহজে সাজাতে পারবেন।</p>
             </div>
         </div>
 
-        <!-- ১১. সাহিত্য বিভাগ: নাটিকা -->
         <div id="natika" class="content-section">
             <div class="section-title">🎭 সাহিত্য বিভাগ - নাটিকা</div>
             <div class="news-card">
-                <h2>এখানে নাটিকা যুক্ত করুন</h2>
-                <p>আপনার লেখা ছোট ছোট সংলাপ বা নাটিকা এই বক্সে প্রকাশ করতে পারবেন।</p>
+                <h2>নাটিকার নাম এখানে লিখুন</h2>
+                <p>ছোট ছোট সংলাপ বা নাটিকা প্রকাশের জন্য এই বক্সটি ব্যবহার করুন।</p>
             </div>
         </div>
 
-        <!-- ১২. রান্না সেকশন -->
         <div id="ranna" class="content-section">
             <div class="section-title">🍳 রান্না ও রেসিপি</div>
             <div class="news-card">
-                <h2>ঐতিহ্যবাহী সুস্বাদু খাবারের রেসিপি</h2>
-                <p>নওগাঁর ঐতিহ্যবাহী খাবারসহ বিভিন্ন মজাদার রান্নার রেসিপি ও টিপস এই সেকশনে নিয়মিত প্রকাশ করা হবে।</p>
+                <h2>মজাদার রান্নার রেসিপি এখানে লিখুন</h2>
+                <p>যেকোনো খাবারের রেসিপি বা রান্নার টিপস এই বক্সে নিয়মিত প্রকাশ করতে পারবেন।</p>
             </div>
         </div>
 
@@ -329,39 +235,28 @@
         &copy; ২০২৬ আজকের নওগাঁ ২৪। সর্বস্বত্ব সংরক্ষিত।
     </div>
 
-    <!-- সেকশন বদলানোর জন্য জাভাস্ক্রিপ্ট কোড -->
     <script>
         function openSection(evt, sectionName) {
             var i, contentSection, menuBtn;
             
-            // সব কন্টেন্ট লুকিয়ে ফেলা
             contentSection = document.getElementsByClassName("content-section");
             for (i = 0; i < contentSection.length; i++) {
-                contentSection[i].className = contentSection[i].className.replace(" active", "");
+                contentSection[i].classList.remove("active");
             }
             
-            // সব বাটনের এক্টিভ কালার মুছে ফেলা
             menuBtn = document.getElementsByClassName("menu-btn");
             for (i = 0; i < menuBtn.length; i++) {
-                menuBtn[i].className = menuBtn[i].className.replace(" active", "");
+                menuBtn[i].classList.remove("active");
             }
             
-            // বর্তমান সেকশনটি দেখানো এবং বাটনে লাল কালার দেওয়া
-            document.getElementById(sectionName).className += " active";
+            document.getElementById(sectionName).classList.add("active");
             if (evt) {
-                evt.currentTarget.className += " active";
+                evt.currentTarget.classList.add("active");
             }
             
-            // মোবাইল স্ক্রিনে ক্লিক করার পর পেজটি যেন নিজে নিজেই একদম উপরে চলে যায়
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
 
 </body>
-    </html>
-
-            
-
-    
-            
-                          
+</html>
