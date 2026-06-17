@@ -34,10 +34,9 @@
             color: #e0e0e0;
         }
         
-        /* সহজ ও সচল মেনুবার */
+        /* মোবাইল স্ক্রল মেনুবার */
         .nav-container {
             background-color: #222;
-            sticky: top;
             position: -webkit-sticky;
             position: sticky;
             top: 0;
@@ -46,6 +45,10 @@
             overflow-x: auto;
             white-space: nowrap;
             padding: 8px 5px;
+            scrollbar-width: none; /* ফায়ারফক্সের জন্য */
+        }
+        .nav-container::-webkit-scrollbar {
+            display: none; /* ক্রোম ও সাফারির জন্য */
         }
         .nav-container button {
             background: none;
@@ -63,9 +66,6 @@
         .nav-container button.active {
             background-color: #e63946;
             color: white;
-        }
-        .nav-container button:hover {
-            background-color: #444;
         }
 
         /* ব্রেকিং নিউজ */
@@ -90,7 +90,7 @@
             font-size: 14px;
         }
 
-        /* কন্টেন্ট বক্স */
+        /* কন্টেন্ট বক্স এলাকা */
         .main-content {
             padding: 15px;
             max-width: 800px;
@@ -151,6 +151,7 @@
     <div class="nav-container">
         <button class="menu-btn active" onclick="openSection(event, 'prochchod')">প্রচ্ছদ</button>
         <button class="menu-btn" onclick="openSection(event, 'naogaon')">নওগাঁ শহর</button>
+        <button class="menu-btn" onclick="openSection(event, 'sports')">খেলাধুলা</button>
         <button class="menu-btn" onclick="openSection(event, 'shonskriti')">সংস্কৃতি</button>
         <button class="menu-btn" onclick="openSection(event, 'kobita')">কবিতা</button>
         <button class="menu-btn" onclick="openSection(event, 'golpo')">ছোট গল্প</button>
@@ -181,11 +182,19 @@
             </div>
         </div>
 
+        <div id="sports" class="content-section">
+            <div class="section-title">⚽ খেলাধুলা</div>
+            <div class="news-card">
+                <h2>নওগাঁ জেলা স্টেডিয়ামে শুরু হতে যাচ্ছে আন্তঃস্কুল ফুটবল টুর্নামেন্ট</h2>
+                <p>স্থানীয় প্রতিভাদের তুলে আনতে আগামী সপ্তাহ থেকেই মাঠে গড়াচ্ছে জমজমাট ফুটবল আসর।</p>
+            </div>
+        </div>
+
         <div id="shonskriti" class="content-section">
             <div class="section-title">🎨 সংস্কৃতি বিষয়ক</div>
             <div class="news-card">
-                <h2>সংস্কৃতি বিষয়ক খবর এখানে লিখুন</h2>
-                <p>নওগাঁর মেলা, উৎসব, লোকসংস্কৃতি বা যেকোনো অনুষ্ঠান সম্পর্কিত খবর এখানে দিন।</p>
+                <h2>নওগাঁর লোকসংস্কৃতি ও উৎসবের ইতিহাস</h2>
+                <p>নওগাঁ জেলার সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য, ঐতিহ্যবাহী মেলা এবং বিভিন্ন উৎসবের খবরাখবর এই বিভাগে থাকবে।</p>
             </div>
         </div>
 
