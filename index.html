@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আজকের নওগাঁ ২৪ | সত্য প্রচারে আপসহীন</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #0d3b66, #001f3f);
+            color: #fff;
+            padding: 25px 0;
+            text-align: center;
+            border-bottom: 4px solid #e65c00;
+        }
+        .logo-container h1 {
+            font-size: 2.8rem;
+            color: #ff9900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 5px;
+        }
+        .logo-container p {
+            font-size: 1.1rem;
+            color: #eceff1;
+        }
+
+        /* Navigation Menu with Dropdown */
+        nav {
+            background-color: #222;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        .nav-container li {
+            position: relative;
+        }
+        .nav-container a {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 15px 20px;
+            display: block;
+            transition: 0.3s;
+        }
+        .nav-container a:hover {
+            color: #ff9900;
+            background-color: #111;
+        }
+
+        /* Live Badge Animation */
+        .live-badge {
+            background-color: #d32f2f;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 5px;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* Dropdown Menu for Literature */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            list-style: none;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-menu li {
+            width: 100%;
+        }
+        .dropdown-menu a {
+            padding: 10px 15px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #444;
+        }
+
+        /* Breaking News */
+        .breaking-news {
+            background-color: #e65c00;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 8px 20px;
+            font-weight: bold;
+            max-width: 1200px;
+            margin: 15px auto;
+            border-radius: 4px;
+        }
+        .breaking-title {
+            background-color: #d32f2f;
+            padding: 4px 10px;
+            border-radius: 3px;
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+        .ticker-wrapper {
+            overflow: hidden;
+            width: 100%;
+        }
+        .ticker-text {
+            display: inline-block;
+            white-space: nowrap;
+            padding-left: 100%;
+            animation: ticker 25s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* Layout */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 0 15px 40px 15px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .section-box {
+            background-color: #fff;
+            border-radius: 6px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .section-title {
+            font-size: 1.3rem;
+            color: #0d3b66;
+            border-bottom: 3px solid #e65c00;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .full-width {
+            grid-column: span 2;
+        }
+
+        /* News Cards */
+        .news-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .news-item h4 {
+            font-size: 1.1rem;
+            color: #222;
+            margin-bottom: 5px;
+        }
+        .news-item h4:hover {
+            color: #e65c00;
+        }
+        .news-item p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Live Video Box Demo */
+        .live-video-box {
+            background-color: #000;
+            color: #fff;
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            border: 2px solid #d32f2f;
+        }
+
+        /* Sidebar Widgets */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .market-list {
+            list-style: none;
+        }
+        .market-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: #111;
+            color: #ccc;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 5px solid #0d3b66;
+            margin-top: 40px;
+        }
+        .footer-links a {
+            margin: 0 10px;
+            color: #aaa;
+        }
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .main-container { grid-template-columns: 1fr; }
+            .news-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Box -->
+    <header>
+        <div class="logo-container">
+            <h1>আজকের নওগাঁ ২৪</h1>
+            <p>সত্য প্রচারে আপসহীন — ২৪ ঘণ্টা নওগাঁর সাথে</p>
+        </div>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav>
+        <ul class="nav-container">
+            <li><a href="#">প্রচ্ছদ</a></li>
+            <li><a href="#">লাইভ <span class="live-badge">LIVE</span></a></li>
+            <li><a href="#">নওগাঁ শহর</a></li>
+            <li><a href="#">জাতীয়</a></li>
+            <li><a href="#">আন্তর্জাতিক</a></li>
+            <li><a href="#">খেলাধুলা</a></li>
+            <!-- Literature Dropdown Menu -->
+            <li class="dropdown">
+                <a href="#">সাহিত্য বিভাগ ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">কবিতা</a></li>
+                    <li><a href="#">ছোট গল্প</a></li>
+                    <li><a href="#">উপন্যাস</a></li>
+                    <li><a href="#">নাটিকা</a></li>
+                </ul>
+            </li>
+            <li><a href="#">ফিচার</a></li>
+            <li><a href="#">লাইফস্টাইল</a></li>
+            <li><a href="#">রান্না</a></li>
+            <li><a href="#">বিনোদন</a></li>
+            <li><a href="#">যমুনা (জনসাধারণ)</a></li>
+        </ul>
+    </nav>
+
+    <!-- Breaking News Ticker -->
+    <div class="breaking-news">
+        <span class="breaking-title">ব্রেকিং নিউজ</span>
+        <div class="ticker-wrapper">
+            <div class="ticker-text">
+                আজকের নওগাঁ ২৪-এ সরাসরি সম্প্রচার বা লাইভ সেকশন যুক্ত করা হয়েছে... | নওগাঁর বাজার দর আপডেট করা হয়েছে... | সাহিত্য বিভাগে নতুন ছোট গল্প ও কবিতা প্রকাশিত হয়েছে...
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Layout Grid -->
+    <div class="main-container">
+        
+        <!-- Left Column: News Sections -->
+        <main class="news-grid">
+            
+            <!-- Live Section Box -->
+            <div class="section-box full-width" style="border-top: 4px solid #d32f2f;">
+                <h3 class="section-title" style="color: #d32f2f;">🔴 লাইভ সম্প্রচার (Live Section)</h3>
+                <div class="live-video-box">
+                    [ এখানে ফেসবুক লাইভ বা ইউটিউব লাইভ ভিডিও যুক্ত করার ফ্রেম থাকবে ]
+                </div>
+                <div class="news-item">
+                    <h4><a href="#">নওগাঁর বর্তমান পরিস্থিতি নিয়ে মাঠ পর্যায় থেকে সরাসরি লাইভ আপডেট</a></h4>
+                    <p>আমাদের প্রতিনিধি সরাসরি যুক্ত আছেন নওগাঁর প্রধান চত্বর থেকে। লাইভ আপডেট দেখতে থাকুন...</p>
+                </div>
+            </div>
+            
+            <!-- Jamuna Section -->
+            <div class="section-box full-width" style="border-left: 5px solid #0d3b66;">
+                <h3 class="section-title">যমুনা (জনসাধারণের কথা)</h3>
+                <div class="news-item">
+                    <h4><a href="#">"শহরের ড্রেনেজ ব্যবস্থা সংস্কার করা জরুরি" — ভুক্তভোগী এক পৌরবাসীর খোলা চিঠি</a></h4>
+                    <p>নওগাঁ শহরের প্রধান সড়ক ও সংলগ্ন গলির ড্রেনেজ ব্যবস্থা নিয়ে জনসাধারণের ভোগান্তি এবং স্থানীয়দের মতামত...</p>
+                </div>
+            </div>
+
+            <!-- Naogaon City Section -->
+            <div class="section-box">
+                <h3 class="section-title">নওগাঁ শহর</h3>
+                <div class="news-item">
+                    <h4><a href="#">নওগাঁর ঐতিহ্যবাহী চত্বরগুলোর সৌন্দর্য বর্ধন প্রকল্পের কাজ শুরু</a></h4>
+                </div>
+            </div>
+
+            <!-- Literature Section Preview -->
+            <div class="section-box">
+                <h3 class="section-title">সাহিত্য বিভাগ</h3>
+                <div class="news-item">
+                    <span style="color: #e65c00; font-size: 0.8rem; font-weight: bold;">[নতুন কবিতা]</span>
+                    <h4><a href="#">স্মৃতির পটে নওগাঁর বিকেল — কবি সৌরভ হোসেন</a></h4>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Right Column: Sidebar Widgets -->
+        <aside>
+            
+            <!-- Market Price Widget -->
+            <div class="section-box">
+                <h3 class="section-title">নওগাঁর বাজার দর</h3>
+                <ul class="market-list">
+                    <li><span>চাল (নাজিরশাইল)</span> <strong>৭২ টাকা/কেজি</strong></li>
+                    <li><span>পেঁয়াজ (দেশি)</span> <strong>৮৫ টাকা/কেজি</strong></li>
+                    <li><span>আলু</span> <strong>৪০ টাকা/কেজি</strong></li>
+                </ul>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- Footer Area -->
+    <footer>
+        <p>&copy; ২০২৬ আজকের নওগাঁ ২৪. সর্বস্বত্ব সংরক্ষিত।</p>
+    </footer>
+
+</body>
+                          </html>
+                          
