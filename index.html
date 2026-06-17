@@ -2,155 +2,382 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>আজকের নওগাঁ ২৪ | সত্য প্রচারে আপসহীন</title>
     <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --text-muted: #555555;
+            --header-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            --nav-bg: #1a1a1a;
+            --accent-color: #e63946;
+            --gold-color: #ffb703;
+            --border-color: #eeeeee;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #cbd5e1;
+            --header-gradient: linear-gradient(135deg, #020617, #0f172a);
+            --nav-bg: #020617;
+            --border-color: #334155;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
+
         body {
-            background-color: #f4f6f9;
-            color: #333;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
         }
+
+        /* রিডিং প্রোগ্রেস বার */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 2000;
+        }
+        .progress-bar {
+            height: 4px;
+            background: var(--accent-color);
+            width: 0%;
+        }
+
         header {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background: var(--header-gradient);
             color: white;
             text-align: center;
-            padding: 25px 15px;
+            padding: 30px 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
         }
+
         header h1 {
-            font-size: 28px;
-            color: #ffb703;
+            font-size: 36px;
+            color: var(--gold-color);
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
+
         header p {
             font-size: 14px;
             font-style: italic;
             color: #e0e0e0;
+            margin-bottom: 12px;
         }
-        
-        /* মোবাইল স্ক্রল মেনুবার */
+
+        .live-date-time {
+            font-size: 13px;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            color: #fff;
+        }
+
+        /* কন্ট্রোল বার ও সার্চ বক্স */
+        .top-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            padding: 8px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            outline: none;
+            font-size: 14px;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .control-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .control-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* স্লাইডিং মেনুবার */
         .nav-container {
-            background-color: #222;
-            position: -webkit-sticky;
+            background-color: var(--nav-bg);
             position: sticky;
             top: 0;
             z-index: 1000;
             display: flex;
             overflow-x: auto;
             white-space: nowrap;
-            padding: 8px 5px;
-            scrollbar-width: none; /* ফায়ারফক্সের জন্য */
+            padding: 12px 5px;
+            scrollbar-width: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+
         .nav-container::-webkit-scrollbar {
-            display: none; /* ক্রোম ও সাফারির জন্য */
+            display: none;
         }
+
         .nav-container button {
             background: none;
             border: none;
-            color: white;
-            padding: 10px 16px;
-            font-size: 14px;
+            color: #ccc;
+            padding: 8px 16px;
+            font-size: 15px;
             cursor: pointer;
             display: inline-block;
             font-weight: bold;
             border-radius: 4px;
-            margin-right: 4px;
-            transition: 0.2s;
+            margin-right: 5px;
         }
+
         .nav-container button.active {
-            background-color: #e63946;
+            background-color: var(--accent-color);
             color: white;
         }
 
         /* ব্রেকিং নিউজ */
         .ticker-wrapper {
-            background-color: #ffb703;
+            background-color: var(--gold-color);
             color: #000;
-            padding: 10px;
+            padding: 12px;
             font-weight: bold;
             display: flex;
             align-items: center;
         }
+
         .ticker-title {
-            background-color: #e63946;
+            background-color: var(--accent-color);
             color: white;
-            padding: 3px 8px;
+            padding: 4px 10px;
             border-radius: 3px;
-            font-size: 12px;
+            font-size: 13px;
             margin-right: 10px;
             white-space: nowrap;
         }
-        marquee {
+
+        /* বিজ্ঞাপন স্লট */
+        .ad-space {
+            background: var(--card-bg);
+            border: 2px dashed #bbb;
+            text-align: center;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            color: var(--text-muted);
             font-size: 14px;
+            font-weight: bold;
         }
 
-        /* কন্টেন্ট বক্স এলাকা */
+        /* কন্টেন্ট এরিয়া */
         .main-content {
             padding: 15px;
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
-            min-height: 400px;
         }
+
         .content-section {
             display: none;
         }
+
         .content-section.active {
             display: block;
         }
-        .section-title {
-            background-color: #0f2027;
-            color: #ffb703;
-            padding: 12px;
-            margin-top: 10px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-            font-size: 18px;
-        }
-        .news-card {
-            background: white;
-            padding: 20px;
+
+        /* প্রিমিয়াম নিউজ কার্ড */
+        .big-news-card {
+            background: var(--card-bg);
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-            border-left: 5px solid #e63946;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            touch-action: pan-y;
         }
-        .news-card h2 {
-            font-size: 19px;
-            color: #0f2027;
-            margin-bottom: 10px;
-            line-height: 1.4;
+
+        .big-news-card img {
+            width: 100%;
+            height: auto;
+            max-height: 350px;
+            object-fit: cover;
+            display: block;
         }
-        .news-card p {
-            font-size: 15px;
-            line-height: 1.6;
-            text-align: justify;
+
+        .big-news-content {
+            padding: 20px;
         }
-        .footer {
-            background-color: #222;
-            color: #bbb;
-            text-align: center;
-            padding: 15px;
+
+        .news-meta {
+            display: flex;
+            gap: 10px;
             font-size: 12px;
-            margin-top: 40px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .big-news-card h2 {
+            font-size: 22px;
+            color: var(--text-color);
+            margin-bottom: 12px;
+            line-height: 1.4;
+            font-weight: bold;
+        }
+
+        .news-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            text-align: justify;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        /* মডার্ন অ্যাকশন বার */
+        .action-bar {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .action-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* ছোট খবরের তালিকা */
+        .list-section-title {
+            font-size: 18px;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin: 25px 0 15px 0;
+            font-weight: bold;
+        }
+
+        .small-news-list {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+        }
+
+        .small-news-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .small-news-item:last-child {
+            border-bottom: none;
+        }
+
+        .small-news-item img {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+
+        .small-news-item h3 {
+            font-size: 16px;
+            color: var(--text-color);
+            line-height: 1.4;
+            font-weight: normal;
+        }
+
+        .footer {
+            background-color: var(--nav-bg);
+            color: #a0a0a0;
+            text-align: center;
+            padding: 25px;
+            font-size: 13px;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
+    <!-- রিডিং প্রোগ্রেস বার -->
+    <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
+
     <header>
         <h1>আজকের নওগাঁ ২৪</h1>
         <p>সত্য প্রচারে আপসহীন — ২৪ ঘণ্টা নওগাঁর সাথে</p>
+        <div id="liveClock" class="live-date-time">লোড হচ্ছে...</div>
     </header>
 
+    <!-- কন্ট্রোল বার ও লাইভ সার্চ -->
+    <div class="top-controls">
+        <input type="text" class="search-box" id="searchInput" onkeyup="searchNews()" placeholder="🔍 খবর খুঁজুন...">
+        <button class="control-btn" id="themeToggleBtn" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+
+    <!-- ডানে-বামে স্লাইডিং মেনুবার -->
     <div class="nav-container">
         <button class="menu-btn active" onclick="openSection(event, 'prochchod')">প্রচ্ছদ</button>
         <button class="menu-btn" onclick="openSection(event, 'naogaon')">নওগাঁ শহর</button>
+        <button class="menu-btn" onclick="openSection(event, 'rajshahi')">রাজশাহী</button>
+        <button class="menu-btn" onclick="openSection(event, 'national')">জাতীয়</button>
+        <button class="menu-btn" onclick="openSection(event, 'international')">আন্তর্জাতিক</button>
+        <button class="menu-btn" onclick="openSection(event, 'jomuona')">যমুনা ফিচার</button>
+        <button class="menu-btn" onclick="openSection(event, 'biggan')">বিজ্ঞান ও প্রযুক্তি</button>
         <button class="menu-btn" onclick="openSection(event, 'sports')">খেলাধুলা</button>
         <button class="menu-btn" onclick="openSection(event, 'shonskriti')">সংস্কৃতি</button>
         <button class="menu-btn" onclick="openSection(event, 'kobita')">কবিতা</button>
@@ -162,110 +389,149 @@
 
     <div class="ticker-wrapper">
         <div class="ticker-title">ব্রেকিং নিউজ</div>
-        <marquee scrollamount="5"> নওগাঁ জেলার ২৪ ঘন্টার খবর পেতে চোখ রাখুনAjker Naogaon 24 এ ধন্যবাদ।।</marquee>
+        <marquee scrollamount="5">আজকের নওগাঁ ২৪ সংস্করণে যুক্ত হলো এআই অডিও নিউজ রিডার ও প্রফেশনাল মাল্টি-ট্যাপ জুম টেকনোলজি ।।</marquee>
     </div>
 
     <div class="main-content">
         
+        <div class="ad-space">
+            📢 প্রফেশনাল স্পনসরড ব্যানার অ্যাড স্লট (বিজ্ঞাপনের জন্য যোগাযোগ করুন)
+        </div>
+
+        <!-- ================= ১. প্রচ্ছদ সেকশন ================= -->
         <div id="prochchod" class="content-section active">
-            <div class="news-card">
-                <h2> নওগাঁর ধামইরহাটে ক্ষেতের ফসল খাওয়ার অভিযোএ ছাগলকে পিটিয়ে হত্যা।</h2>
-                <p> নওগাঁর ধামইরহাটে ক্ষেতের ফসল খাওয়ার অভিযোগে আমিনা বেগম নামে এক গৃহবধূর ছাগলকে নির্মমভাবে পিটিয়ে হ*ত্যা করার অভিযোগ উঠেছে। উপজেলার হাটনগর এলাকায় এই ঘটনা ঘটে। এ ঘটনায় অভিযুক্ত ব্যক্তির বিচার ও ক্ষতিপূরণ দাবি করেছেন ভুক্তভোগী পরিবার। স্থানীয় সূত্রে জানা গেছে, হাটনগর এলাকার ওয়াজেদ আলীর স্ত্রী আমিনা বেগমের একটি ছাগল অসাবধানতাবশত একই এলাকার আব্দুস সাত্তারের ছেলে হারুনের ক্ষেতে ঢুকে পড়ে। এতে ক্ষিপ্ত হয়ে হারুন ছাগলটিকে লাঠি দিয়ে নির্মমভাবে পি*টিয়ে হত্যা করে। একটি নিরীহ প্রাণীর প্রতি এমন অমানবিক নিষ্ঠুরতায় এলাকায় তীব্র ক্ষোভের সৃষ্টি হয়েছে।।</p>
+            <div class="big-news-card news-item-box">
+                <img src="https://picsum.photos/700/350?random=50" alt="News Image">
+                <div class="big-news-content">
+                    <div class="news-meta"><span class="badge">প্রধান সংবাদ</span> ⏱️ ২ মিনিট পড়া</div>
+                    <h2>নওগাঁ শহরের সৌন্দর্য বর্ধন ও পরিষ্কার-পরিচ্ছন্নতা অভিযান শুরু</h2>
+                    <p class="news-text" id="news1">শহরকে পরিচ্ছন্ন ও বাসযোগ্য রাখতে বিশেষ উদ্যোগ নেওয়া হয়েছে। স্থানীয় তরুণ সমাজ ও প্রশাসনের যৌথ ব্যবস্থাপনায় আজ সকাল থেকে এই সৌন্দর্য বর্ধন কর্মসূচি শুরু হয়। লেখা পরিমাণ মতো বড় করতে এখানে পরপর ডাবল ট্যাপ করুন।</p>
+                    <div class="action-bar">
+                        <button class="action-btn" onclick="speakText('news1')">🔊 খবরটি শুনুন</button>
+                        <button class="action-btn" onclick="shareNews('নওগাঁ শহরের সৌন্দর্য বর্ধন অভিযান শুরু', 'news1')">🔗 শেয়ার করুন</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-section-title">সর্বশেষ অন্যান্য খবর</div>
+            <div class="small-news-list">
+                <div class="small-news-item news-item-box">
+                    <img src="https://picsum.photos/100/70?random=51" alt="List Image">
+                    <h3>সীমান্তে আইনের শাসন ও মানবাধিকার রক্ষায় বিশেষ আলোচনা সভা অনুষ্ঠিত</h3>
+                </div>
+                <div class="small-news-item news-item-box">
+                    <img src="https://picsum.photos/100/70?random=52" alt="List Image">
+                    <h3>মহাবিশ্ব অত্যন্ত দ্রুত গতিতে সম্প্রসারিত হচ্ছে: নতুন মহাকাশ গবেষণা</h3>
+                </div>
             </div>
         </div>
 
+        <!-- ================= ২. নওগাঁ শহর সেকশন ================= -->
         <div id="naogaon" class="content-section">
-            <div class="section-title">🏢 নওগাঁ শহর</div>
-            <div class="news-card">
-                <h2>নওগাঁ শহরের খবর এখানে লিখুন</h2>
-                <p>শহরের দৈনন্দিন ঘটনা, উন্নয়ন বা যেকোনো খবর এই বক্সে টাইপ করে দিন।</p>
+            <div class="big-news-card news-item-box">
+                <img src="https://picsum.photos/700/350?random=53" alt="Naogaon">
+                <div class="big-news-content">
+                    <div class="news-meta">⏱️ ১ মিনিট পড়া</div>
+                    <h2>নওগাঁ জেলা সদরের প্রধান সড়কগুলোর সংস্কার কাজ দ্রুত গতিতে চলছে</h2>
+                    <p class="news-text" id="news2">জনসাধারণের যাতায়াত নির্বিঘ্ন করতে পৌর এলাকার প্রধান প্রধান সড়কগুলো নতুন করে কার্পেটিং করা হচ্ছে।</p>
+                    <div class="action-bar">
+                        <button class="action-btn" onclick="speakText('news2')">🔊 খবরটি শুনুন</button>
+                        <button class="action-btn" onclick="shareNews('নওগাঁর প্রধান সড়ক সংস্কার কাজ', 'news2')">🔗 শেয়ার করুন</button>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- ================= ৩. রাজশাহী সেকশন ================= -->
+        <div id="rajshahi" class="content-section">
+            <div class="big-news-card news-item-box">
+                <img src="https://picsum.photos/700/350?random=54" alt="Rajshahi">
+                <div class="big-news-content">
+                    <div class="news-meta"><span class="badge">আঞ্চলিক</span> ⏱️ ২ মিনিট পড়া</div>
+                    <h2>রাজশাহী বিভাগের আট জেলায় আধুনিক কৃষি বিপ্লবের ছোঁয়া</h2>
+                    <p class="news-text" id="news3">কৃষকদের মাঝে উন্নত বীজ ও আধুনিক কৃষি যন্ত্রপাতি বিতরণের মাধ্যমে ফলন দ্বিগুণের লক্ষ্যমাত্রা নির্ধারণ করা হয়েছে।</p>
+                    <div class="action-bar">
+                        <button class="action-btn" onclick="speakText('news3')">🔊 খবরটি শুনুন</button>
+                        <button class="action-btn" onclick="shareNews('রাজশাহীতে আধুনিক কৃষি বিপ্লব', 'news3')">🔗 শেয়ার করুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ৪. জাতীয় সেকশন ================= -->
+        <div id="national" class="content-section">
+            <div class="big-news-card news-item-box">
+                <img src="https://picsum.photos/700/350?random=55" alt="National">
+                <div class="big-news-content">
+                    <h2>দেশজুড়ে ডিজিটাল শিক্ষা ব্যবস্থার সম্প্রসারণ ও নতুন কারিকুলাম</h2>
+                    <p class="news-text" id="news4">সারাদেশের schoolগুলোতে আধুনিক কম্পিউটার ল্যাব ও স্মার্ট ক্লাসরুম তৈরির কাজ দ্রুত গতিতে এগিয়ে চলছে।</p>
+                    <div class="action-bar">
+                        <button class="action-btn" onclick="speakText('news4')">🔊 খবরটি শুনুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ৫. আন্তর্জাতিক সেকশন ================= -->
+        <div id="international" class="content-section">
+            <div class="big-news-card news-item-box">
+                <img src="https://picsum.photos/700/350?random=56" alt="International">
+                <div class="big-news-content">
+                    <h2>বিশ্ব জলবায়ু সম্মেলনে পরিবেশ রক্ষায় একজোট হলো উন্নত দেশসমূহ</h2>
+                    <p class="news-text" id="news5">কার্বন নিঃসরণ কমাতে এবং পরিবেশের ভারসাম্য ফিরিয়ে আনতে বিশ্বনেতারা নতুন এক ঐতিহাসিক চুক্তিতে স্বাক্ষর করেছেন।</p>
+                    <div class="action-bar">
+                        <button class="action-btn" onclick="speakText('news5')">🔊 খবরটি শুনুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ৬. যমুনা ফিচার সেকশন ================= -->
+        <div id="jomuona" class="content-section">
+            <div class="big-news-card news-item-box">
+                <img src="https://picsum.photos/700/350?random=57" alt="Jamuna">
+                <div class="big-news-content">
+                    <h2>নদী পাড়ের মানুষের জীবনসংগ্রাম ও প্রকৃতির রূপবদল</h2>
+                    <p class="news-text" id="news6">যমুনা নদীর তীরবর্তী অঞ্চলের মানুষের জীবনযাত্রা, সংস্কৃতি এবং বর্ষা মৌসুমে প্রকৃতির অপরূপ সৌন্দর্য নিয়ে আমাদের বিশেষ প্রতিবেদন।</p>
+                    <div class="action-bar">
+                        <button class="action-btn" onclick="speakText('news6')">🔊 খবরটি শুনুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ৭. বিজ্ঞান ও প্রযুক্তি সেকশন ================= -->
+        <div id="biggan" class="content-section">
+            <div class="big-news-card news-item-box">
+                <img src="https://picsum.photos/700/350?random=58" alt="Science">
+                <div class="big-news-content">
+                    <h2>কৃত্রিম বুদ্ধিমত্তা (AI) যেভাবে বদলে দিচ্ছে আগামী দিনের পৃথিবী</h2>
+                    <p class="news-text" id="news7">চিকিৎসা বিজ্ঞান থেকে শুরু করে মহাকাশ গবেষণা—সবখানেই এখন রাজত্ব করছে নতুন সব এআই প্রযুক্তি।</p>
+                    <div class="action-bar">
+                        <button class="action-btn" onclick="speakText('news7')">🔊 খবরটি শুনুন</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ৮. খেলাধুলা সেকশন ================= -->
         <div id="sports" class="content-section">
-            <div class="section-title">⚽ খেলাধুলা</div>
-            <div class="news-card">
-                <h2>নওগাঁ জেলা স্টেডিয়ামে শুরু হতে যাচ্ছে আন্তঃস্কুল ফুটবল টুর্নামেন্ট</h2>
-                <p>স্থানীয় প্রতিভাদের তুলে আনতে আগামী সপ্তাহ থেকেই মাঠে গড়াচ্ছে জমজমাট ফুটবল আসর।</p>
+            <div class="big-news-card news-item-box">
+                <img src="https://picsum.photos/700/350?random=59" alt="Sports">
+                <div class="big-news-content">
+                    <h2>নওগাঁ জেলা স্টেডিয়ামে শুরু হতে যাচ্ছে আন্তঃস্কুল ফুটবল টুর্নামেন্ট</h2>
+                    <p class="news-text" id="news8">স্থানীয় প্রতিভাদের তুলে আনতে আগামী সপ্তাহ থেকেই মাঠে গড়াচ্ছে জমজমাট ফুটবল আসর।</p>
+                    <div class="action-bar">
+                        <button class="action-btn" onclick="speakText('news8')">🔊 খবরটি শুনুন</button>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- ================= ৯. সংস্কৃতি সেকশন ================= -->
         <div id="shonskriti" class="content-section">
-            <div class="section-title">🎨 সংস্কৃতি বিষয়ক</div>
-            <div class="news-card">
-                <h2>নওগাঁর লোকসংস্কৃতি ও উৎসবের ইতিহাস</h2>
-                <p>নওগাঁ জেলার সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য, ঐতিহ্যবাহী মেলা এবং বিভিন্ন উৎসবের খবরাখবর এই বিভাগে থাকবে।</p>
-            </div>
-        </div>
-
-        <div id="kobita" class="content-section">
-            <div class="section-title">✍️ সাহিত্য বিভাগ - কবিতা</div>
-            <div class="news-card">
-                <h2>এখানে কবিতার নাম লিখুন</h2>
-                <p>এখানে কবিতার লাইনগুলো সুন্দর করে টাইপ করুন।</p>
-            </div>
-        </div>
-
-        <div id="golpo" class="content-section">
-            <div class="section-title">📖 সাহিত্য বিভাগ - ছোট গল্প</div>
-            <div class="news-card">
-                <h2>গল্পের নাম এখানে লিখুন</h2>
-                <p>আপনার লেখা যেকোনো ছোট গল্প এখানে পাঠকদের জন্য সাজিয়ে দিন।</p>
-            </div>
-        </div>
-
-        <div id="uponnas" class="content-section">
-            <div class="section-title">📚 সাহিত্য বিভাগ - উপন্যাস</div>
-            <div class="news-card">
-                <h2>উপন্যাসের নাম এখানে লিখুন</h2>
-                <p>আপনার ধারাবাহিক উপন্যাস বা বড় কোনো লেখা এখানে খুব সহজে সাজাতে পারবেন।</p>
-            </div>
-        </div>
-
-        <div id="natika" class="content-section">
-            <div class="section-title">🎭 সাহিত্য বিভাগ - নাটিকা</div>
-            <div class="news-card">
-                <h2>নাটিকার নাম এখানে লিখুন</h2>
-                <p>ছোট ছোট সংলাপ বা নাটিকা প্রকাশের জন্য এই বক্সটি ব্যবহার করুন।</p>
-            </div>
-        </div>
-
-        <div id="ranna" class="content-section">
-            <div class="section-title">🍳 রান্না ও রেসিপি</div>
-            <div class="news-card">
-                <h2>মজাদার রান্নার রেসিপি এখানে লিখুন</h2>
-                <p>যেকোনো খাবারের রেসিপি বা রান্নার টিপস এই বক্সে নিয়মিত প্রকাশ করতে পারবেন।</p>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="footer">
-        &copy; ২০২৬ আজকের নওগাঁ ২৪। সর্বস্বত্ব সংরক্ষিত।
-    </div>
-
-    <script>
-        function openSection(evt, sectionName) {
-            var i, contentSection, menuBtn;
-            
-            contentSection = document.getElementsByClassName("content-section");
-            for (i = 0; i < contentSection.length; i++) {
-                contentSection[i].classList.remove("active");
-            }
-            
-            menuBtn = document.getElementsByClassName("menu-btn");
-            for (i = 0; i < menuBtn.length; i++) {
-                menuBtn[i].classList.remove("active");
-            }
-            
-            document.getElementById(sectionName).classList.add("active");
-            if (evt) {
-                evt.currentTarget.classList.add("active");
-            }
-            
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-    </script>
-
-</body>
-</html>
+            <div class="big-news-card news-item-box">
+                <img src="https://picsum.photos/700/350?random=60" alt="Culture">
+                <div class="big-news-content">
+                    <h2>নওগাঁর ঐতিহ্যবাহী লোকসংগীত ও গম্ভীরা উৎসবের আয়োজন</h2>
+                    <p class="news-text" id="news9">প্রাচীন লোকসংস্কৃতিকে বাঁচিয়ে রাখতে তিন দিনব্যাপী বর্ণা
