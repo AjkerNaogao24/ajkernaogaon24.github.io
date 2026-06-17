@@ -65,7 +65,6 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        /* আপনার অফিশিয়াল লোগো রেসপনসিভ স্টাইল */
         .brand-logo {
             max-width: 160px;
             width: 100%;
@@ -90,19 +89,21 @@
             color: #fff;
         }
 
-        /* কন্ট্রোল বার ও সার্চ বক্স ডিজাইন ফিক্স */
+        /* মোবাইল লেআউট ওভারল্যাপ ফিক্স */
         .top-controls {
             display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             padding: 12px 15px;
             background: var(--card-bg);
             border-bottom: 1px solid var(--border-color);
         }
 
         .search-box {
-            padding: 8px 15px;
+            padding: 10px 15px;
             border: 1px solid var(--border-color);
             border-radius: 20px;
             background: var(--bg-color);
@@ -110,22 +111,25 @@
             outline: none;
             font-size: 14px;
             flex: 1;
-            max-width: 200px;
+            min-width: 160px;
         }
 
         .control-btn {
             background: var(--bg-color);
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            padding: 8px 16px;
+            padding: 10px 18px;
             border-radius: 20px;
             cursor: pointer;
             font-size: 13px;
             font-weight: bold;
             white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* স্লাইডিং মেনুবার ফিক্স */
+        /* ক্যাটাগরি মেনুবার ডিজাইন ফিক্স */
         .nav-container {
             background-color: var(--nav-bg);
             position: sticky;
@@ -134,7 +138,7 @@
             display: flex;
             overflow-x: auto;
             white-space: nowrap;
-            padding: 10px 5px;
+            padding: 12px 8px;
             scrollbar-width: none;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
@@ -147,13 +151,13 @@
             background: none;
             border: none;
             color: #ccc;
-            padding: 8px 14px;
+            padding: 8px 15px;
             font-size: 14px;
             cursor: pointer;
             display: inline-block;
             font-weight: bold;
             border-radius: 4px;
-            margin-right: 5px;
+            margin-right: 6px;
         }
 
         .nav-container button.active {
@@ -165,20 +169,21 @@
         .ticker-wrapper {
             background-color: var(--gold-color);
             color: #000;
-            padding: 10px;
+            padding: 12px;
             font-weight: bold;
             display: flex;
             align-items: center;
             font-size: 14px;
+            clear: both;
         }
 
         .ticker-title {
             background-color: var(--accent-color);
             color: white;
-            padding: 4px 10px;
+            padding: 5px 12px;
             border-radius: 3px;
             font-size: 12px;
-            margin-right: 10px;
+            margin-right: 12px;
             white-space: nowrap;
         }
 
@@ -210,7 +215,7 @@
             display: block;
         }
 
-        /* নিউজカード */
+        /* নিউজ কার্ড */
         .big-news-card {
             background: var(--card-bg);
             border-radius: 8px;
@@ -348,7 +353,6 @@
     <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
 
     <header>
-        <!-- ইমেজ প্যাথ ফিক্সড লোডার -->
         <img src="10794.jpg" alt="আজকের নওগাঁ ২৪" class="brand-logo" onerror="this.style.display='none';"><br>
         <p>সত্য প্রচারে আপসহীন — ২৪ ঘণ্টা নওগাঁর সাথে</p>
         <div id="liveClock" class="live-date-time">লোড হচ্ছে...</div>
@@ -359,7 +363,7 @@
         <button class="control-btn" id="themeToggleBtn" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
     </div>
 
-    <!-- আপনার নির্দেশিত ১৬টি ক্যাটাগরির সুসজ্জিত মেনুবার -->
+    <!-- সুসজ্জিত ১৬টি ক্যাটাগরি মেনুবার -->
     <div class="nav-container">
         <button class="menu-btn active" onclick="openSection(event, 'prochchod')">প্রচ্ছদ</button>
         <button class="menu-btn" onclick="openSection(event, 'naogaon')">নওগাঁ শহর</button>
@@ -522,4 +526,4 @@
                 <img src="https://picsum.photos/700/350?random=21" alt="Environment">
                 <div class="big-news-content">
                     <h2 class="news-heading">প্লাস্টিক বর্জন ও বৃক্ষরোপণ: পরিবেশ রক্ষায় নতুন সামাজিক আন্দোলন</h2>
-                    <p class="news-text">প্রকৃতির ভারসাম্য রক্ষা এবং বৈশ্বিক উষ্ণতা নিয়ন্ত্রণে দেশব্যাপী ব্যাপকভাবে বৃক্ষরোপণ কর্মসূচি পালিত হচ
+                    <p class="news-text">প্রকৃতির ভারসাম্
