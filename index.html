@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+                     
+    
+            
+               <!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
@@ -14,357 +17,351 @@
         body {
             background-color: #f4f6f9;
             color: #333;
-            line-height: 1.6;
         }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Header */
         header {
-            background: linear-gradient(135deg, #0d3b66, #001f3f);
-            color: #fff;
-            padding: 25px 0;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
             text-align: center;
-            border-bottom: 4px solid #e65c00;
+            padding: 25px 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .logo-container h1 {
-            font-size: 2.8rem;
-            color: #ff9900;
+        header h1 {
+            font-size: 28px;
+            color: #ffb703;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
-        .logo-container p {
-            font-size: 1.1rem;
-            color: #eceff1;
+        header p {
+            font-size: 14px;
+            font-style: italic;
+            color: #e0e0e0;
         }
-
-        /* Navigation Menu with Dropdown */
-        nav {
+        
+        /* মেনুবার */
+        .nav-container {
             background-color: #222;
+            sticky: top;
+            position: -webkit-sticky;
             position: sticky;
             top: 0;
             z-index: 1000;
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 5px;
         }
-        .nav-container li {
+        .nav-container button, .nav-container a {
+            background: none;
+            border: none;
+            color: white;
+            text-decoration: none;
+            padding: 12px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .nav-container button.active {
+            background-color: #e63946;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        /* সাহিত্য ড্রপডাউন */
+        .dropdown {
+            display: inline-block;
             position: relative;
         }
-        .nav-container a {
-            color: #fff;
-            font-size: 1rem;
-            font-weight: bold;
-            padding: 15px 20px;
-            display: block;
-            transition: 0.3s;
-        }
-        .nav-container a:hover {
-            color: #ff9900;
-            background-color: #111;
-        }
-
-        /* Live Badge Animation */
-        .live-badge {
-            background-color: #d32f2f;
-            color: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            margin-left: 5px;
-            display: inline-block;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
-        }
-
-        /* Dropdown Menu for Literature */
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-        .dropdown-menu {
+        .dropdown-content {
             display: none;
             position: absolute;
             background-color: #333;
-            list-style: none;
-            min-width: 160px;
+            min-width: 140px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            top: 100%;
-            left: 0;
+            z-index: 1001;
+            border-radius: 4px;
         }
-        .dropdown-menu li {
-            width: 100%;
-        }
-        .dropdown-menu a {
-            padding: 10px 15px;
-            font-size: 0.95rem;
-            border-bottom: 1px solid #444;
-        }
-
-        /* Breaking News */
-        .breaking-news {
-            background-color: #e65c00;
+        .dropdown-content button {
             color: white;
-            display: flex;
-            align-items: center;
-            padding: 8px 20px;
-            font-weight: bold;
-            max-width: 1200px;
-            margin: 15px auto;
-            border-radius: 4px;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            text-align: left;
         }
-        .breaking-title {
-            background-color: #d32f2f;
-            padding: 4px 10px;
-            border-radius: 3px;
-            margin-right: 15px;
-            white-space: nowrap;
+        .dropdown-content button:hover {
+            background-color: #e63946;
         }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* ব্রেকিং নিউজ */
         .ticker-wrapper {
-            overflow: hidden;
-            width: 100%;
-        }
-        .ticker-text {
-            display: inline-block;
-            white-space: nowrap;
-            padding-left: 100%;
-            animation: ticker 25s linear infinite;
-        }
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-100%, 0, 0); }
-        }
-
-        /* Layout */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-            padding: 0 15px 40px 15px;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .section-box {
-            background-color: #fff;
-            border-radius: 6px;
-            padding: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
-        .section-title {
-            font-size: 1.3rem;
-            color: #0d3b66;
-            border-bottom: 3px solid #e65c00;
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-        }
-        .full-width {
-            grid-column: span 2;
-        }
-
-        /* News Cards */
-        .news-item {
-            margin-bottom: 10px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .news-item h4 {
-            font-size: 1.1rem;
-            color: #222;
-            margin-bottom: 5px;
-        }
-        .news-item h4:hover {
-            color: #e65c00;
-        }
-        .news-item p {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* Live Video Box Demo */
-        .live-video-box {
-            background-color: #000;
-            color: #fff;
-            width: 100%;
-            height: 300px;
+            background-color: #ffb703;
+            color: #000;
+            padding: 10px;
+            font-weight: bold;
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 4px;
+        }
+        .ticker-title {
+            background-color: #e63946;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+        marquee {
+            font-size: 14px;
+        }
+
+        /* মেইন কন্টেন্ট এলাকা */
+        .main-content {
+            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            min-height: 400px;
+        }
+        
+        /* প্রতিটি সেকশন ডিফল্টভাবে লুকিয়ে থাকবে */
+        .content-section {
+            display: none;
+        }
+        
+        /* শুধু একটি সেকশন একটিভ থাকবে */
+        .content-section.active {
+            display: block;
+        }
+        
+        .section-title {
+            background-color: #0f2027;
+            color: #ffb703;
+            padding: 12px;
+            margin-top: 10px;
             margin-bottom: 15px;
-            font-weight: bold;
-            border: 2px solid #d32f2f;
+            border-radius: 4px;
+            font-size: 18px;
         }
-
-        /* Sidebar Widgets */
-        aside {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .news-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border-left: 5px solid #e63946;
         }
-        .market-list {
-            list-style: none;
+        .news-card h2 {
+            font-size: 19px;
+            color: #0f2027;
+            margin-bottom: 10px;
+            line-height: 1.4;
         }
-        .market-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            font-size: 0.95rem;
+        .news-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            text-align: justify;
         }
-
-        footer {
-            background-color: #111;
-            color: #ccc;
-            padding: 30px 20px;
+        .live-box {
+            background: #000;
+            color: white;
+            padding: 50px 20px;
             text-align: center;
-            border-top: 5px solid #0d3b66;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #222;
+            color: #bbb;
+            text-align: center;
+            padding: 15px;
+            font-size: 12px;
             margin-top: 40px;
-        }
-        .footer-links a {
-            margin: 0 10px;
-            color: #aaa;
-        }
-        .footer-links a:hover {
-            color: #fff;
-        }
-
-        @media (max-width: 768px) {
-            .main-container { grid-template-columns: 1fr; }
-            .news-grid { grid-template-columns: 1fr; }
-            .full-width { grid-column: span 1; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Box -->
     <header>
-        <div class="logo-container">
-            <h1>আজকের নওগাঁ ২৪</h1>
-            <p>সত্য প্রচারে আপসহীন — ২৪ ঘণ্টা নওগাঁর সাথে</p>
-        </div>
+        <h1>আজকের নওগাঁ ২৪</h1>
+        <p>সত্য প্রচারে আপসহীন — ২৪ ঘণ্টা নওগাঁর সাথে</p>
     </header>
 
-    <!-- Main Navigation Bar -->
-    <nav>
-        <ul class="nav-container">
-            <li><a href="#">প্রচ্ছদ</a></li>
-            <li><a href="#">লাইভ <span class="live-badge">LIVE</span></a></li>
-            <li><a href="#">নওগাঁ শহর</a></li>
-            <li><a href="#">জাতীয়</a></li>
-            <li><a href="#">আন্তর্জাতিক</a></li>
-            <li><a href="#">খেলাধুলা</a></li>
-            <!-- Literature Dropdown Menu -->
-            <li class="dropdown">
-                <a href="#">সাহিত্য বিভাগ ▾</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">কবিতা</a></li>
-                    <li><a href="#">ছোট গল্প</a></li>
-                    <li><a href="#">উপন্যাস</a></li>
-                    <li><a href="#">নাটিকা</a></li>
-                </ul>
-            </li>
-            <li><a href="#">ফিচার</a></li>
-            <li><a href="#">লাইফস্টাইল</a></li>
-            <li><a href="#">রান্না</a></li>
-            <li><a href="#">বিনোদন</a></li>
-            <li><a href="#">যমুনা (জনসাধারণ)</a></li>
-        </ul>
-    </nav>
-
-    <!-- Breaking News Ticker -->
-    <div class="breaking-news">
-        <span class="breaking-title">ব্রেকিং নিউজ</span>
-        <div class="ticker-wrapper">
-            <div class="ticker-text">
-                আজকের নওগাঁ ২৪-এ সরাসরি সম্প্রচার বা লাইভ সেকশন যুক্ত করা হয়েছে... | নওগাঁর বাজার দর আপডেট করা হয়েছে... |সাহিত্যের সন্ধানে আমরা ২৪ ঘন্টা..
+    <!-- নেভিগেশন মেনুবার -->
+    <div class="nav-container">
+        <button class="menu-btn active" onclick="openSection(event, 'prochchod')">প্রচ্ছদ</button>
+        <button class="menu-btn" onclick="openSection(event, 'live')">লাইভ</button>
+        <button class="menu-btn" onclick="openSection(event, 'naogaon')">নওগাঁ শহর</button>
+        <button class="menu-btn" onclick="openSection(event, 'national')">জাতীয়</button>
+        <button class="menu-btn" onclick="openSection(event, 'international')">আন্তর্জাতিক</button>
+        <button class="menu-btn" onclick="openSection(event, 'sports')">খেলাধুলা</button>
+        <button class="menu-btn" onclick="openSection(event, 'shonskriti')">সংস্কৃতি</button>
+        <div class="dropdown">
+            <button class="menu-btn">সাহিত্য বিভাগ ▾</button>
+            <div class="dropdown-content">
+                <button onclick="openSection(event, 'kobita')">কবিতা</button>
+                <button onclick="openSection(event, 'golpo')">ছোট গল্প</button>
+                <button onclick="openSection(event, 'uponnas')">উপন্যাস</button>
+                <button onclick="openSection(event, 'natika')">নাটিকা</button>
             </div>
         </div>
+        <button class="menu-btn" onclick="openSection(event, 'ranna')">রান্না</button>
     </div>
 
-    <!-- Main Layout Grid -->
-    <div class="main-container">
+    <div class="ticker-wrapper">
+        <div class="ticker-title">ব্রেকিং নিউজ</div>
+        <marquee scrollamount="5">আজকের নওগাঁ ২৪ পোর্টালে সংস্কৃতি বিষয়ক নতুন বিভাগ যুক্ত করা হয়েছে ।। মেনু থেকে যেকোনো সেকশনে ক্লিক করে নতুন আপডেট দেখুন ।।</marquee>
+    </div>
+
+    <div class="main-content">
         
-        <!-- Left Column: News Sections -->
-        <main class="news-grid">
-            
-            <!-- Live Section Box -->
-            <div class="section-box full-width" style="border-top: 4px solid #d32f2f;">
-                <h3 class="section-title" style="color: #d32f2f;">🔴 লাইভ সম্প্রচার (Live Section)</h3>
-                <div class="live-video-box">
-                    [ এখানে ফেসবুক লাইভ বা ইউটিউব লাইভ ভিডিও যুক্ত করার ফ্রেম থাকবে ]
-                </div>
-                <div class="news-item">
-                    <h4><a href="#">নওগাঁর বর্তমান পরিস্থিতি নিয়ে মাঠ পর্যায় থেকে সরাসরি লাইভ আপডেট</a></h4>
-                    <p>আমাদের প্রতিনিধি সরাসরি যুক্ত আছেন নওগাঁর প্রধান চত্বর থেকে। লাইভ আপডেট দেখতে থাকুন...</p>
-                </div>
+        <!-- ১. প্রচ্ছদ সেকশন -->
+        <div id="prochchod" class="content-section active">
+            <div class="news-card">
+                <h2>স্বাগতম! আজকের নওগাঁ ২৪ নিউজ পোর্টালে আপনাকে অভিনন্দন</h2>
+                <p>নওগাঁ জেলার সব খবর সবার আগে পৌঁছে দিতে আমাদের এই প্রচেষ্টা। ওপরের পরিমার্জিত মেনু থেকে যেকোনো ক্যাটাগরিতে ক্লিক করলেই স্ক্রিন পরিবর্তন না হয়ে সরাসরি সেই বিষয়ের খবর বা সাহিত্য আপনার সামনে চলে আসবে।</p>
             </div>
-            
-            <!-- Jamuna Section -->
-            <div class="section-box full-width" style="border-left: 5px solid #0d3b66;">
-                <h3 class="section-title">যমুনা (জনসাধারণের কথা)</h3>
-                <div class="news-item">
-                    <h4><a href="#">"শহরের ড্রেনেজ ব্যবস্থা সংস্কার করা খুবই জরুরি" — ভুক্তভোগী এক পৌরবাসীর খোলা চিঠি</a></h4>
-                    <p>নওগাঁ শহরের প্রধান সড়ক ও সংলগ্ন গলির ড্রেনেজ ব্যবস্থা নিয়ে জনসাধারণের ভোগান্তি এবং স্থানীয়দের মতামত...</p>
-                </div>
+        </div>
+
+        <!-- ২. লাইভ সেকশন -->
+        <div id="live" class="content-section">
+            <div class="section-title">📺 লাইভ সম্প্রচার</div>
+            <div class="live-box">
+                🔴 লাইভ ভিডিও সেকশন (এখানে ভিডিওর লিংক যুক্ত করা যাবে)
             </div>
+        </div>
 
-            <!-- Naogaon City Section -->
-            <div class="section-box">
-                <h3 class="section-title">নওগাঁ শহর</h3>
-                <div class="news-item">
-                    <h4><a href="#">নওগাঁর ঐতিহ্যবাহী চত্বরগুলোর সৌন্দর্য বর্ধন প্রকল্পের কাজ শুরু </a></h4>
-                </div>
+        <!-- ৩. নওগাঁ শহর সেকশন -->
+        <div id="naogaon" class="content-section">
+            <div class="section-title">🏢 নওগাঁ শহর</div>
+            <div class="news-card">
+                <h2>নওগাঁ শহরের সৌন্দর্য বর্ধন ও পরিষ্কার-পরিচ্ছন্নতা অভিযান শুরু</h2>
+                <p>শহরকে পরিচ্ছন্ন ও বাসযোগ্য রাখতে বিশেষ উদ্যোগ নেওয়া হয়েছে। স্থানীয় তরুণ ও প্রশাসনের যৌথ ব্যবস্থাপনায় এই কাজ চলছে।</p>
             </div>
+        </div>
 
-            <!-- Literature Section Preview -->
-            <div class="section-box">
-                <h3 class="section-title">সাহিত্য বিভাগ</h3>
-                <div class="ne সাহিত্যকে সমৃদ্ধ করুন 
-                    <h4><a href="#">স্মৃতির পটে নওগাঁর বিকেল — কবি সৌরভ হোসেন</a></h4>
-                </div>
+        <!-- ৪. জাতীয় সেকশন -->
+        <div id="national" class="content-section">
+            <div class="section-title">🇧🇩 জাতীয় সংবাদ</div>
+            <div class="news-card">
+                <h2>দেশজুড়ে ডিজিটাল শিক্ষা ব্যবস্থার সম্প্রসারণ</h2>
+                <p>সারাদেশের স্কুলগুলোতে আধুনিক ল্যাব ও স্মার্ট ক্লাসরুম তৈরির কাজ দ্রুত গতিতে এগিয়ে চলছে।</p>
             </div>
+        </div>
 
-        </main>
-
-        <!-- Right Column: Sidebar Widgets -->
-        <aside>
-            
-            <!-- Market Price Widget -->
-            <div class="section-box">
-                <h3 class="section-title">নওগাঁর বাজার দর</h3>
-                <ul class="market-list">
-                    <li><span>চাল (নাজিরশাইল)</span> <strong>৭২ টাকা/কেজি</strong></li>
-                    <li><span>পেঁয়াজ (দেশি)</span> <strong>৮৫ টাকা/কেজি</strong></li>
-                    <li><span>আলু</span> <strong>৪০ টাকা/কেজি</strong></li>
-                </ul>
+        <!-- ৫. আন্তর্জাতিক সেকশন -->
+        <div id="international" class="content-section">
+            <div class="section-title">🌐 আন্তর্জাতিক সংবাদ</div>
+            <div class="news-card">
+                <h2>বিশ্বজুড়ে প্রযুক্তির নতুন বিপ্লব ও আমাদের প্রস্তুতি</h2>
+                <p>আন্তর্জাতিক বাজারের সাথে তাল মিলিয়ে দেশের আইটি খাতকে আরও সমৃদ্ধ করার জোর প্রচেষ্টা চলছে।</p>
             </div>
+        </div>
 
-        </aside>
+        <!-- ৬. খেলাধুলা সেকশন -->
+        <div id="sports" class="content-section">
+            <div class="section-title">⚽ খেলাধুলা</div>
+            <div class="news-card">
+                <h2>নওগাঁ জেলা স্টেডিয়ামে শুরু হতে যাচ্ছে আন্তঃস্কুল ফুটবল টুর্নামেন্ট</h2>
+                <p>স্থানীয় প্রতিভাদের তুলে আনতে আগামী সপ্তাহ থেকেই মাঠে গড়াচ্ছে জমজমাট ফুটবল আসর।</p>
+            </div>
+        </div>
+
+        <!-- ৭. সংস্কৃতি বিষয়ক সেকশন -->
+        <div id="shonskriti" class="content-section">
+            <div class="section-title">🎨 সংস্কৃতি বিষয়ক</div>
+            <div class="news-card">
+                <h2>নওগাঁর ঐতিহ্যবাহী লোকসংস্কৃতি ও উৎসবের ইতিহাস</h2>
+                <p>নওগাঁ জেলার সমৃদ্ধ সাংস্কৃতিক ঐতিহ্য, ঐতিহ্যবাহী মেলা, লোকসংগীত এবং বিভিন্ন উৎসবের খবরাখবর ও প্রবন্ধ এই বিভাগে নিয়মিত প্রকাশ করা হবে।</p>
+            </div>
+        </div>
+
+        <!-- ৮. সাহিত্য বিভাগ: কবিতা -->
+        <div id="kobita" class="content-section">
+            <div class="section-title">✍️ সাহিত্য বিভাগ - কবিতা</div>
+            <div class="news-card">
+                <h2>এখানে আপনার নতুন ও সুন্দর কবিতাটি থাকবে</h2>
+                <p>আপনার লেখা যেকোনো চমৎকার কবিতার লাইনগুলো এই বক্সে আপনি সাজিয়ে দিতে পারবেন। এখন কবিতায় চাপ দিলে শুধু কবিতাই স্ক্রিনে আসবে!</p>
+            </div>
+        </div>
+
+        <!-- ৯. সাহিত্য বিভাগ: ছোটগল্প -->
+        <div id="golpo" class="content-section">
+            <div class="section-title">📖 সাহিত্য বিভাগ - ছোট গল্প</div>
+            <div class="news-card">
+                <h2>এখানে ছোট গল্প যুক্ত করুন</h2>
+                <p>আপনার লেখা গল্পগুলো পাঠকদের জন্য এই সেকশনে সুন্দরভাবে ফুটিয়ে তোলা যাবে।</p>
+            </div>
+        </div>
+
+        <!-- ১০. সাহিত্য বিভাগ: উপন্যাস -->
+        <div id="uponnas" class="content-section">
+            <div class="section-title">📚 সাহিত্য বিভাগ - উপন্যাস</div>
+            <div class="news-card">
+                <h2>এখানে উপন্যাস বা ধারাবাহিক গল্প থাকবে</h2>
+                <p>আপনার বড় গল্প বা উপন্যাস সুন্দর পরিমার্জিত উপায়ে পড়ার জন্য এই সেকশনটি ব্যবহার করুন।</p>
+            </div>
+        </div>
+
+        <!-- ১১. সাহিত্য বিভাগ: নাটিকা -->
+        <div id="natika" class="content-section">
+            <div class="section-title">🎭 সাহিত্য বিভাগ - নাটিকা</div>
+            <div class="news-card">
+                <h2>এখানে নাটিকা যুক্ত করুন</h2>
+                <p>আপনার লেখা ছোট ছোট সংলাপ বা নাটিকা এই বক্সে প্রকাশ করতে পারবেন।</p>
+            </div>
+        </div>
+
+        <!-- ১২. রান্না সেকশন -->
+        <div id="ranna" class="content-section">
+            <div class="section-title">🍳 রান্না ও রেসিপি</div>
+            <div class="news-card">
+                <h2>ঐতিহ্যবাহী সুস্বাদু খাবারের রেসিপি</h2>
+                <p>নওগাঁর ঐতিহ্যবাহী খাবারসহ বিভিন্ন মজাদার রান্নার রেসিপি ও টিপস এই সেকশনে নিয়মিত প্রকাশ করা হবে।</p>
+            </div>
+        </div>
 
     </div>
 
-    <!-- Footer Area -->
-    <footer>
-        <p>&copy; ২০২৬ আজকের নওগাঁ ২৪. সর্বস্বত্ব সংরক্ষিত।</p>
-    </footer>
+    <div class="footer">
+        &copy; ২০২৬ আজকের নওগাঁ ২৪। সর্বস্বত্ব সংরক্ষিত।
+    </div>
+
+    <!-- সেকশন বদলানোর জন্য জাভাস্ক্রিপ্ট কোড -->
+    <script>
+        function openSection(evt, sectionName) {
+            var i, contentSection, menuBtn;
+            
+            // সব কন্টেন্ট লুকিয়ে ফেলা
+            contentSection = document.getElementsByClassName("content-section");
+            for (i = 0; i < contentSection.length; i++) {
+                contentSection[i].className = contentSection[i].className.replace(" active", "");
+            }
+            
+            // সব বাটনের এক্টিভ কালার মুছে ফেলা
+            menuBtn = document.getElementsByClassName("menu-btn");
+            for (i = 0; i < menuBtn.length; i++) {
+                menuBtn[i].className = menuBtn[i].className.replace(" active", "");
+            }
+            
+            // বর্তমান সেকশনটি দেখানো এবং বাটনে লাল কালার দেওয়া
+            document.getElementById(sectionName).className += " active";
+            if (evt) {
+                evt.currentTarget.className += " active";
+            }
+            
+            // মোবাইল স্ক্রিনে ক্লিক করার পর পেজটি যেন নিজে নিজেই একদম উপরে চলে যায়
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
 
 </body>
-                          </html>
+    </html>
+
+            
+
+    
+            
                           
