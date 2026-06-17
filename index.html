@@ -2,528 +2,139 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>আজকের নওগাঁ ২৪ | সত্য প্রচারে আপসহীন</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আজকের নওগাঁ ২৪</title>
     <style>
-        :root {
-            --bg-color: #f4f6f9;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --text-muted: #555555;
-            --header-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-            --nav-bg: #1a1a1a;
-            --accent-color: #e63946;
-            --gold-color: #ffb703;
-            --border-color: #eeeeee;
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-muted: #cbd5e1;
-            --header-gradient: linear-gradient(135deg, #020617, #0f172a);
-            --nav-bg: #020617;
-            --border-color: #334155;
-        }
-
-        * {
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
+            background-color: #f4f4f4;
+            color: #333;
         }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
-
-        /* রিডিং প্রোগ্রেস বার */
-        .progress-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: transparent;
-            z-index: 2000;
-        }
-        .progress-bar {
-            height: 4px;
-            background: var(--accent-color);
-            width: 0%;
-        }
-
         header {
-            background: var(--header-gradient);
+            background-color: #003366;
             color: white;
             text-align: center;
-            padding: 25px 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .brand-logo {
-            max-width: 160px;
-            width: 100%;
-            height: auto;
-            margin-bottom: 8px;
-            display: inline-block;
-        }
-
-        header p {
-            font-size: 13px;
-            font-style: italic;
-            color: #e0e0e0;
-            margin-bottom: 12px;
-        }
-
-        .live-date-time {
-            font-size: 12px;
-            background: rgba(255, 255, 255, 0.15);
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            color: #fff;
-        }
-
-        /* মোবাইল লেআউট ওভারল্যাপ ফিক্স */
-        .top-controls {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 15px;
-            background: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .search-box {
-            padding: 10px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            background: var(--bg-color);
-            color: var(--text-color);
-            outline: none;
-            font-size: 14px;
-            flex: 1;
-            min-width: 160px;
-        }
-
-        .control-btn {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 10px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            white-space: nowrap;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* ক্যাটাগরি মেনুবার ডিজাইন ফিক্স */
-        .nav-container {
-            background-color: var(--nav-bg);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 12px 8px;
-            scrollbar-width: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .nav-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .nav-container button {
-            background: none;
-            border: none;
-            color: #ccc;
-            padding: 8px 15px;
-            font-size: 14px;
-            cursor: pointer;
-            display: inline-block;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-right: 6px;
-        }
-
-        .nav-container button.active {
-            background-color: var(--accent-color);
-            color: white;
-        }
-
-        /* ব্রেকিং নিউজ ফিক্স */
-        .ticker-wrapper {
-            background-color: var(--gold-color);
-            color: #000;
-            padding: 12px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-            clear: both;
-        }
-
-        .ticker-title {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 3px;
-            font-size: 12px;
-            margin-right: 12px;
-            white-space: nowrap;
-        }
-
-        /* বিজ্ঞাপন স্লট */
-        .ad-space {
-            background: var(--card-bg);
-            border: 2px dashed #bbb;
-            text-align: center;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 6px;
-            color: var(--text-muted);
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        /* কন্টেন্ট এরিয়া */
-        .main-content {
-            padding: 15px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .content-section {
-            display: none;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        /* নিউজ কার্ড */
-        .big-news-card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-
-        .big-news-card img {
-            width: 100%;
-            height: auto;
-            max-height: 350px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .big-news-content {
             padding: 20px;
         }
-
-        .news-meta {
-            display: flex;
-            gap: 10px;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 10px;
+        header h1 {
+            margin: 0;
+            font-size: 28px;
         }
-
-        .badge {
-            background: var(--accent-color);
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            color: #ccc;
+        }
+        /* সহজ ও পরিষ্কার মেনুবার */
+        .menu-bar {
+            background-color: #222;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px;
+        }
+        .menu-bar a {
             color: white;
-            padding: 2px 6px;
-            border-radius: 3px;
+            text-decoration: none;
+            padding: 8px 16px;
+            display: inline-block;
             font-weight: bold;
-        }
-
-        .big-news-card h2 {
-            font-size: 20px;
-            color: var(--text-color);
-            margin-bottom: 12px;
-            line-height: 1.4;
-            font-weight: bold;
-        }
-
-        .news-text {
-            font-size: 16px;
-            line-height: 1.7;
-            color: var(--text-muted);
-            text-align: justify;
-            user-select: none;
-            cursor: pointer;
-        }
-
-        /* অ্যাকশন বার */
-        .action-bar {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .action-btn {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            cursor: pointer;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* ছোট খবরের তালিকা */
-        .list-section-title {
-            font-size: 17px;
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 5px;
-            margin: 25px 0 15px 0;
-            font-weight: bold;
-        }
-
-        .small-news-list {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border: 1px solid var(--border-color);
-        }
-
-        .small-news-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .small-news-item:last-child {
-            border-bottom: none;
-        }
-
-        .small-news-item img {
-            width: 90px;
-            height: 65px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-right: 15px;
-        }
-
-        .small-news-item h3 {
             font-size: 15px;
-            color: var(--text-color);
-            line-height: 1.4;
-            font-weight: normal;
         }
-
+        .menu-bar a:hover {
+            background-color: #555;
+            border-radius: 4px;
+        }
+        /* ব্রেকিং নিউজ */
+        .breaking-news {
+            background-color: #ffcc00;
+            color: black;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        /* মূল কন্টেন্ট */
+        .container {
+            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .news-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .news-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+        .news-card h2 {
+            font-size: 22px;
+            margin: 12px 0;
+            color: #003366;
+        }
+        .news-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            text-align: justify;
+        }
         .footer {
-            background-color: var(--nav-bg);
-            color: #a0a0a0;
+            background-color: #222;
+            color: white;
             text-align: center;
-            padding: 25px;
+            padding: 15px;
             font-size: 13px;
-            margin-top: 60px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
 
-    <!-- রিডিং প্রোগ্রেস বার -->
-    <div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
-
     <header>
-        <img src="10794.jpg" alt="আজকের নওগাঁ ২৪" class="brand-logo" onerror="this.style.display='none';"><br>
+        <h1>আজকের নওগাঁ ২৪</h1>
         <p>সত্য প্রচারে আপসহীন — ২৪ ঘণ্টা নওগাঁর সাথে</p>
-        <div id="liveClock" class="live-date-time">লোড হচ্ছে...</div>
     </header>
 
-    <div class="top-controls">
-        <input type="text" class="search-box" id="searchInput" onkeyup="searchNews()" placeholder="🔍 খবর খুঁজুন...">
-        <button class="control-btn" id="themeToggleBtn" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    <div class="menu-bar">
+        <a href="#">প্রচ্ছদ</a>
+        <a href="#">নওগাঁ শহর</a>
+        <a href="#">রাজশাহী</a>
+        <a href="#">জাতীয়</a>
+        <a href="#">আন্তর্জাতিক</a>
+        <a href="#">খেলাধুলা</a>
+        <a href="#">বিনোদন</a>
     </div>
 
-    <!-- সুসজ্জিত ১৬টি ক্যাটাগরি মেনুবার -->
-    <div class="nav-container">
-        <button class="menu-btn active" onclick="openSection(event, 'prochchod')">প্রচ্ছদ</button>
-        <button class="menu-btn" onclick="openSection(event, 'naogaon')">নওগাঁ শহর</button>
-        <button class="menu-btn" onclick="openSection(event, 'rajshahi')">রাজশাহী</button>
-        <button class="menu-btn" onclick="openSection(event, 'national')">জাতীয়</button>
-        <button class="menu-btn" onclick="openSection(event, 'international')">আন্তর্জাতিক</button>
-        <button class="menu-btn" onclick="openSection(event, 'jomuona')">যমুনা ফিচার</button>
-        <button class="menu-btn" onclick="openSection(event, 'live_news')">লাইভ সংবাদ</button>
-        <button class="menu-btn" onclick="openSection(event, 'sports')">খেলাধুলা</button>
-        <button class="menu-btn" onclick="openSection(event, 'biggan')">বিজ্ঞান ও প্রযুক্তি</button>
-        <button class="menu-btn" onclick="openSection(event, 'poribesh')">পরিবেশ</button>
-        <button class="menu-btn" onclick="openSection(event, 'orthoniti')">অর্থনীতি</button>
-        <button class="menu-btn" onclick="openSection(event, 'krishi')">কৃষি</button>
-        <button class="menu-btn" onclick="openSection(event, 'shonskriti')">সংস্কৃতি</button>
-        <button class="menu-btn" onclick="openSection(event, 'kobita')">কবিতা</button>
-        <button class="menu-btn" onclick="openSection(event, 'golpo')">ছোট গল্প</button>
-        <button class="menu-btn" onclick="openSection(event, 'uponnas')">উপন্যাস</button>
-        <button class="menu-btn" onclick="openSection(event, 'ranna')">রান্না</button>
+    <div class="breaking-news">
+        <marquee>আজকের নওগাঁ ২৪ অনলাইন পত্রিকায় আপনাকে স্বাগতম ।। সত্য ও বস্তুনিষ্ঠ সংবাদ পড়তে আমাদের সাথেই থাকুন ।।</marquee>
     </div>
 
-    <div class="ticker-wrapper">
-        <div class="ticker-title">ব্রেকিং নিউজ</div>
-        <marquee scrollamount="5">আজকের নওগাঁ ২৪ সংস্করণে যুক্ত হলো এআই অডিও নিউজ রিডার ও প্রফেশনাল মাল্টি-ট্যাপ জুম টেকনোলজি ।।</marquee>
-    </div>
-
-    <div class="main-content">
+    <div class="container">
         
-        <div class="ad-space">
-            📢 প্রফেশনাল স্পনসরড ব্যানার অ্যাড স্লট (বিজ্ঞাপনের জন্য যোগাযোগ করুন)
+        <!-- প্রধান খবর -->
+        <div class="news-card">
+            <img src="https://picsum.photos/800/400?random=1" alt="নওগাঁর খবর">
+            <h2>নওগাঁ শহরের সৌন্দর্য বর্ধন ও পরিষ্কার-পরিচ্ছন্নতা অভিযান শুরু</h2>
+            <p>নওগাঁ শহরকে পরিচ্ছন্ন, সুন্দর ও বাসযোগ্য রাখতে এক বিশেষ উদ্যোগ নেওয়া হয়েছে। স্থানীয় তরুণ সমাজ ও প্রশাসনের যৌথ ব্যবস্থাপনায় আজ সকাল থেকে শহরের প্রধান প্রধান এলাকায় এই সৌন্দর্য বর্ধন কর্মসূচি শুরু হয়। পরিচ্ছন্নতা বজায় রাখতে সাধারণ মানুষকেও সচেতন হওয়ার আহ্বান জানানো হয়েছে।</p>
         </div>
 
-        <!-- ১. প্রচ্ছদ সেকশন -->
-        <div id="prochchod" class="content-section active">
-            <div class="big-news-card news-item-box">
-                <img src="https://picsum.photos/700/350?random=10" alt="News Image">
-                <div class="big-news-content">
-                    <div class="news-meta"><span class="badge">প্রধান সংবাদ</span> ⏱️ ২ মিনিট পড়া</div>
-                    <h2 class="news-heading">নওগাঁ শহরের সৌন্দর্য বর্ধন ও পরিষ্কার-পরিচ্ছন্নতা অভিযান শুরু</h2>
-                    <p class="news-text">শهرকে পরিচ্ছন্ন ও বাসযোগ্য রাখতে বিশেষ উদ্যোগ নেওয়া হয়েছে। স্থানীয় তরুণ সমাজ ও প্রশাসনের যৌথ ব্যবস্থাপনায় আজ সকাল থেকে এই সৌন্দর্য বর্ধন কর্মসূচি শুরু হয়। লেখা পরিমাণ মতো বড় করতে এখানে পরপর ডাবল ট্যাপ করুন।</p>
-                    <div class="action-bar">
-                        <button class="action-btn" onclick="speakText(this)">🔊 খবরটি শুনুন</button>
-                        <button class="action-btn" onclick="shareNews(this)">🔗 শেয়ার করুন</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="list-section-title">সর্বশেষ অন্যান্য খবর</div>
-            <div class="small-news-list">
-                <div class="small-news-item news-item-box">
-                    <img src="https://picsum.photos/100/70?random=11" alt="List Image">
-                    <h3 class="news-heading">সীমান্তে আইনের শাসন ও মানবাধিকার রক্ষায় বিশেষ আলোচনা সভা অনুষ্ঠিত</h3>
-                </div>
-                <div class="small-news-item news-item-box">
-                    <img src="https://picsum.photos/100/70?random=12" alt="List Image">
-                    <h3 class="news-heading">মহাবিশ্ব অত্যন্ত দ্রুত গতিতে সম্প্রসারিত হচ্ছে: নতুন মহাকাশ গবেষণা</h3>
-                </div>
-            </div>
+        <!-- দ্বিতীয় খবর -->
+        <div class="news-card">
+            <img src="https://picsum.photos/800/400?random=2" alt="কৃষি খবর">
+            <h2>নওগাঁয় আধুনিক পদ্ধতিতে ধান চাষে ব্যাপক সাফল্য</h2>
+            <p>স্বল্প খরচে অধিক ফলন নিশ্চিত করতে নওগাঁর কৃষকরা এখন আধুনিক বৈজ্ঞানিক প্রযুক্তি ও জৈব সারের দিকে ঝুঁকছেন। কৃষি অফিসের সঠিক পরামর্শ ও সহায়তায় এবার জেলায় ধানের বাম্পার ফলন আশা করা যাচ্ছে, যা স্থানীয় অর্থনীতিতে ইতিবাচক সাড়া ফেলবে।</p>
         </div>
 
-        <!-- ২. নওগাঁ শহর সেকশন -->
-        <div id="naogaon" class="content-section">
-            <div class="big-news-card news-item-box">
-                <img src="https://picsum.photos/700/350?random=13" alt="Naogaon">
-                <div class="big-news-content">
-                    <h2 class="news-heading">নওগাঁ জেলা সদরের প্রধান সড়কগুলোর সংস্কার কাজ দ্রুত গতিতে চলছে</h2>
-                    <p class="news-text">জনসাধারণের যাতায়াত নির্বিঘ্ন করতে পৌর এলাকার প্রধান প্রধান সড়কগুলো নতুন করে কার্পেটিং করা হচ্ছে।</p>
-                    <div class="action-bar"><button class="action-btn" onclick="speakText(this)">🔊 খবরটি শুনুন</button></div>
-                </div>
-            </div>
-        </div>
+    </div>
 
-        <!-- ৩. রাজশাহী সেকশন -->
-        <div id="rajshahi" class="content-section">
-            <div class="big-news-card news-item-box">
-                <img src="https://picsum.photos/700/350?random=14" alt="Rajshahi">
-                <div class="big-news-content">
-                    <h2 class="news-heading">রাজশাহী বিভাগের আট জেলায় আধুনিক মৎস্য চাষের প্রশিক্ষণ কর্মসূচি</h2>
-                    <p class="news-text">নতুন কর্মসংস্থান সৃষ্টির লক্ষ্যে মৎস্য অধিদপ্তরের পক্ষ থেকে বেকার যুবকদের মাঝে আধুনিক প্রযুক্তিতে মাছ চাষের প্রশিক্ষণ দেওয়া হচ্ছে।</p>
-                    <div class="action-bar"><button class="action-btn" onclick="speakText(this)">🔊 খবরটি শুনুন</button></div>
-                </div>
-            </div>
-        </div>
+    <div class="footer">
+        &copy; ২০২৬ আজকের নওগাঁ ২৪। সর্বস্বত্ব সংরক্ষিত।
+    </div>
 
-        <!-- ৪. জাতীয় সেকশন -->
-        <div id="national" class="content-section">
-            <div class="big-news-card news-item-box">
-                <img src="https://picsum.photos/700/350?random=15" alt="National">
-                <div class="big-news-content">
-                    <h2 class="news-heading">দেশজুড়ে ডিজিটাল শিক্ষা ব্যবস্থার সম্প্রসারণ ও নতুন কারিকুলাম</h2>
-                    <p class="news-text">সারাদেশের স্কুলগুলোতে আধুনিক কম্পিউটার ল্যাব ও স্মার্ট ক্লাসরুম তৈরির কাজ দ্রুত গতিতে এগিয়ে চলছে।</p>
-                    <div class="action-bar"><button class="action-btn" onclick="speakText(this)">🔊 খবরটি শুনুন</button></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ৫. আন্তর্জাতিক সেকশন -->
-        <div id="international" class="content-section">
-            <div class="big-news-card news-item-box">
-                <img src="https://picsum.photos/700/350?random=16" alt="International">
-                <div class="big-news-content">
-                    <h2 class="news-heading">বিশ্ব জলবায়ু সম্মেলন: পরিবেশ রক্ষায় একজোট হলো উন্নত দেশসমূহ</h2>
-                    <p class="news-text">কার্বন নিঃসরণ কমাতে এবং গ্রিন এনার্জির ব্যবহার বৃদ্ধিতে আন্তর্জাতিক তহবিলের নতুন ঘোষণা দেওয়া হয়েছে।</p>
-                    <div class="action-bar"><button class="action-btn" onclick="speakText(this)">🔊 খবরটি শুনুন</button></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ৬. যমুনা ফিচার -->
-        <div id="jomuona" class="content-section">
-            <div class="big-news-card news-item-box">
-                <img src="https://picsum.photos/700/350?random=17" alt="Jamuna Feature">
-                <div class="big-news-content">
-                    <h2 class="news-heading">নদী পাড়ের মানুষের জীবনসংগ্রাম ও প্রকৃতির রূপবদল</h2>
-                    <p class="news-text">যমুনা নদীর বিস্তীর্ণ চরাঞ্চলের মানুষের জীবনযাত্রা এবং প্রতিকূল আবহাওয়ার সাথে তাদের লড়াইয়ের বাস্তব চিত্র।</p>
-                    <div class="action-bar"><button class="action-btn" onclick="speakText(this)">🔊 খবরটি শুনুন</button></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ৭. লাইভ সংবাদ -->
-        <div id="live_news" class="content-section">
-            <div class="big-news-card news-item-box">
-                <img src="https://picsum.photos/700/350?random=18" alt="Live News">
-                <div class="big-news-content">
-                    <div class="news-meta"><span class="badge" style="background: red;">LIVE</span></div>
-                    <h2 class="news-heading">সারাদেশের মুহূর্তের সব তাজা ও লাইভ খবরের আপডেট</h2>
-                    <p class="news-text">আজকের নওগাঁ ২৪ ডেস্কে আসা প্রতি মুহূর্তের খবরের লাইভ স্ক্রলিং আপডেট এখানে দেখতে পাবেন।</p>
-                    <div class="action-bar"><button class="action-btn" onclick="speakText(this)">🔊 খবরটি শুনুন</button></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ৮. খেলাধুলা -->
-        <div id="sports" class="content-section">
-            <div class="big-news-card news-item-box">
-                <img src="https://picsum.photos/700/350?random=19" alt="Sports">
-                <div class="big-news-content">
-                    <h2 class="news-heading">নওগাঁ জেলা স্টেডিয়ামে শুরু হতে যাচ্ছে আন্তঃস্কুল ফুটবল টুর্নামেন্ট</h2>
-                    <p class="news-text">তরুণ খেলোয়াড়দের প্রতিভা অন্বেষণের লক্ষ্যে স্থানীয় ক্রীড়া সংস্থার উদ্যোগে এই টুর্নামেন্টের আয়োজন করা হয়েছে।</p>
-                    <div class="action-bar"><button class="action-btn" onclick="speakText(this)">🔊 খবরটি শুনুন</button></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ৯. বিজ্ঞান ও প্রযুক্তি -->
-        <div id="biggan" class="content-section">
-            <div class="big-news-card news-item-box">
-                <img src="https://picsum.photos/700/350?random=20" alt="Tech">
-                <div class="big-news-content">
-                    <h2 class="news-heading">কৃত্রিম বুদ্ধিমত্তা (AI) যেভাবে বদলে দিচ্ছে আগামী দিনের পৃথিবী</h2>
-                    <p class="news-text">চিকিৎসা বিজ্ঞান থেকে শুরু করে মহাকাশ গবেষণা—সবখানেই এআই প্রযুক্তির ব্যবহার মানবসভ্যতাকে এগিয়ে নিয়ে যাচ্ছে।</p>
-                    <div class="action-bar"><button class="action-btn" onclick="speakText(this)">🔊 খবরটি শুনুন</button></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ১০. পরিবেশ -->
-        <div id="poribesh" class="content-section">
-            <div class="big-news-card news-item-box">
-                <img src="https://picsum.photos/700/350?random=21" alt="Environment">
-                <div class="big-news-content">
-                    <h2 class="news-heading">প্লাস্টিক বর্জন ও বৃক্ষরোপণ: পরিবেশ রক্ষায় নতুন সামাজিক আন্দোলন</h2>
-                    <p class="news-text">প্রকৃতির ভারসাম্
+</body>
+</html>
